@@ -200,12 +200,12 @@ def build_frame_similarities_dict(F_instance_element_dict):
 
 def print_frame_similarities(F_instance_similarity_dict):
     #print "Printing frame instances similarities..."
-    for key in F_instance_similarity_dict:
-#        print key,":\t",F_instance_similarity_dict[key]
+    for key in F_instance_similarity_dict:       
+	print F_instance_similarity_dict[key]
+    if(len(unmapped_key)>0):
 	print "unmapped keys:\t",
 	for i in unmapped_keys:
-		print i,"\t"        
-	print F_instance_similarity_dict[key]
+		print i,"\t" 
 	
 
 def merge(Instance_1, Instance_2):
