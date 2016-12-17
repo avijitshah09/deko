@@ -140,11 +140,11 @@ def find_similarity_frames(frameType1_offset, elements1_offsets_role, frameType2
 
     #print "Calculating Right2left_elements_similarities..."
     sum_similarity = 0
-    for el_F2 in elements2_synsets_role:
+    for el_r_F2 in elements2_synsets_role:
         max_similarity = 0
         el_F2 = el_r_F2[0]
         r_F2 = el_r_F2[1]
-        for el_F1 in elements1_synsets_role:
+        for el_r_F1 in elements1_synsets_role:
             el_F1 = el_r_F1[0]
             r_F1 = el_r_F1[1]
             if (ROLE == "false"):
@@ -161,7 +161,7 @@ def find_similarity_frames(frameType1_offset, elements1_offsets_role, frameType2
             #print "similarity between", el_F2, el_F1,":\t", similarity_element
             if (similarity_element > max_similarity):
                 max_similarity = similarity_element
-        #print "max_similarity for",el_F1,":\t", max_similarity
+        #print "max_similarity for",el_F2,":\t", max_similarity
         sum_similarity = max_similarity + sum_similarity
     avg_similarity_2 = sum_similarity / len(elements2_synsets_role)
     #print "avg_similarity_R2L:\t", avg_similarity_2
