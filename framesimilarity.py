@@ -14,7 +14,7 @@ PATH_Package = "/".join(PATH_current.split('/')[:-1])
 FLAG_FRAME = "WUP"   #select algorithm for similarity between two frame types
 FLAG_ELEMENTS = "WUP" #select algorithm for similarity between two elements
 ALPHA = 0.5 #constant for main formula
-ROLE = "true"
+ROLE = "false"
 inputfile1 = "./examples/F_instance1.nt"
 inputfile2 = "./examples/F_instance2.nt"
 #nltk.download()
