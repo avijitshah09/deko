@@ -202,7 +202,7 @@ def print_frame_similarities(F_instance_similarity_dict):
     #print "Printing frame instances similarities..."
     for key in F_instance_similarity_dict:       
 	print F_instance_similarity_dict[key]
-    if(len(unmapped_key)>0):
+    if(len(unmapped_keys)>0):
 	print "unmapped keys:\t",
 	for i in unmapped_keys:
 		print i,"\t" 
