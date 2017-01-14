@@ -169,6 +169,8 @@ def find_similarity_frames(frameType1_offset, elements1_offsets_role, frameType2
     avg_similarity = (avg_similarity_1 + avg_similarity_2)/2
     #print "Avg_both_sides_similarities:\t", avg_similarity
 
+    if(similarity_F_types == None):
+        similarity_F_types = 0
     similarity_Frames = ALPHA*(similarity_F_types) + (1-ALPHA)*(avg_similarity)
     #print "FType_similarity\t", synset_F1, synset_F2, ":\t", similarity_F_types
     #print "Similarity Frame instance:", similarity_Frames
