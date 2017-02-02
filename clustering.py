@@ -22,6 +22,7 @@ FLAG_FRAME = "WUP"  # select algorithm for similarity between two frame types
 FLAG_ELEMENTS = "WUP"  # select algorithm for similarity between two elements
 ALPHA = 0.5  # constant for main formula
 ROLE = "false"
+clustering_method = "weighted"
 inputfile = "./samples/test_sample1.nt"
 # nltk.download()
 
@@ -33,11 +34,12 @@ def main(argv):
     global FLAG_ELEMENTS
     global ROLE
     global ALPHA
+    global clustering_method
     try:
-        opts, args = getopt.getopt(argv, "hi:a:t:e:r:",
-                                   ["ifile", "alpha=", "F_Sim_Algo=", "E_Sim_Algo=", "role="])
+        opts, args = getopt.getopt(argv, "hi:a:t:e:r:m:",
+                                   ["ifile", "alpha=", "F_Sim_Algo=", "E_Sim_Algo=", "role=", "method="])
     except getopt.GetoptError:
-        print 'src.py -i <inputfile> -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false>'
+        print 'src.py -i <inputfile> -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false> -m <single, complete, average, weighted, centroid, median, ward>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
@@ -54,6 +56,8 @@ def main(argv):
             FLAG_ELEMENTS = arg
         elif opt in ("-r", "--role"):
             ROLE = arg
+        elif opt in ("-m", "--method_clustering"):
+            clustering_method = arg
     if len(args) >= 1:
         inputfile = args[0]
 
@@ -277,7 +281,8 @@ def print_Dist_matrix(F_instance_distance_matrix, F_instance_index_dict):
 def perform_clustering(Dist_matrix, F_instance_index_dict):
     #result_clusters = ward(Dist_matrix)
     print "Beginnning clustering...."
-    assignments = fcluster(linkage(Dist_matrix, method='weighted'), 1, 'distance') #instead of weighted, can try others too
+    print "method", clustering_method
+    assignments = fcluster(linkage(Dist_matrix, method=clustering_method), 1, 'distance') #instead of weighted, can try others too
     print "clustering performed successfully....."
     cluster = {}
     print "printing clusters...."
