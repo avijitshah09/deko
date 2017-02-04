@@ -23,6 +23,7 @@ FLAG_ELEMENTS = "WUP"  # select algorithm for similarity between two elements
 ALPHA = 0.5  # constant for main formula
 ROLE = "false"
 clustering_method = "weighted"
+DISTANCE = 1
 inputfile = "./samples/test_sample1.nt"
 # nltk.download()
 
@@ -35,15 +36,16 @@ def main(argv):
     global ROLE
     global ALPHA
     global clustering_method
+    global DISTANCE
     try:
-        opts, args = getopt.getopt(argv, "hi:a:t:e:r:m:",
-                                   ["ifile", "alpha=", "F_Sim_Algo=", "E_Sim_Algo=", "role=", "method="])
+        opts, args = getopt.getopt(argv, "hi:a:t:e:r:m:d:",
+                                   ["ifile", "alpha=", "F_Sim_Algo=", "E_Sim_Algo=", "role=", "method=", "distance="])
     except getopt.GetoptError:
-        print 'src.py -i <inputfile> -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false> -m <single, complete, average, weighted, centroid, median, ward>'
+        print 'clustering.py -i <inputfile> -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false> -m <single, complete, average, weighted, centroid, median, ward> -d <distance(greater than 0) range to be considered in same cluster>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'src.py -i <inputfile>  -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false>'
+            print 'clustering.py -i <inputfile>  -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false> -m <single, complete, average, weighted, centroid, median, ward> -d <distance(greater than 0) range to be considered in same cluster>'
             sys.exit()
         elif opt in ("-i", "--ifile"):
             inputfile = arg
@@ -58,6 +60,8 @@ def main(argv):
             ROLE = arg
         elif opt in ("-m", "--method_clustering"):
             clustering_method = arg
+        elif opt in ("-d", "--clustering_distance"):
+            DISTANCE = arg
     if len(args) >= 1:
         inputfile = args[0]
 
@@ -282,7 +286,7 @@ def perform_clustering(Dist_matrix, F_instance_index_dict):
     #result_clusters = ward(Dist_matrix)
     print "Beginnning clustering...."
     print "method", clustering_method
-    assignments = fcluster(linkage(Dist_matrix, method=clustering_method), 1, 'distance') #instead of weighted, can try others too
+    assignments = fcluster(linkage(Dist_matrix, method=clustering_method), DISTANCE, 'distance') #instead of weighted, can try others too
     print "clustering performed successfully....."
     cluster = {}
     print "printing clusters...."
