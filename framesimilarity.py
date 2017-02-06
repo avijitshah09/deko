@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 
 from nltk.corpus import wordnet as wn
-#import nltk
-from path import path
+
 import json
 import re
 import sys, getopt
-#from decimal import *
 
-PATH_current = path('src.py').abspath()
-PATH_Package = "/".join(PATH_current.split('/')[:-1])
 
 FLAG_FRAME = "WUP"   #select algorithm for similarity between two frame types
 FLAG_ELEMENTS = "WUP" #select algorithm for similarity between two elements
@@ -22,6 +18,11 @@ inputfile2 = "./examples/F_instance2.nt"
 
 unmapped_keys = set()    #those occur in any input instance
 
+def help():
+    print sys.argv[0] + ' [-a <alpha value>] [-t <Frame_similarity_Algo>] [-e <element_similarity_Algo>] [-r <true,false>] <inputfile1> <inputfile2>'
+    sys.exit(2)
+	
+
 def main(argv):
        global inputfile1
        global inputfile2
@@ -32,12 +33,12 @@ def main(argv):
        try:
           opts, args = getopt.getopt(argv,"hi:I:a:t:e:r:",["ifile1=","ifile2=","alpha=","F_Sim_Algo=","E_Sim_Algo=","role="])
        except getopt.GetoptError:
-          print 'src.py -i <inputfile1> -I <inputfile2> -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false>'
-          sys.exit(2)
+          help()
+		
        for opt, arg in opts:
           if opt == '-h':
-             print 'src.py -i <inputfile> -I <outputfile> -a <alpha value> -t <Frame_similarity_Algo> -e <element_similarity_Algo> -r <true,false>'
-             sys.exit()
+             help()
+	
           elif opt in ("-i", "--ifile1"):
              inputfile1 = arg
           elif opt in ("-I", "--ifile2"):
