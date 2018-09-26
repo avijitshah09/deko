@@ -3,7 +3,7 @@ Default Knowledge about Objects
 
 DeKO is a repository of default knowledge about common object.
 
-DeKO is built by parsing natural language text with [KNEWS](), extraccting instances of frames from the text, and the clustering the frames.
+DeKO is built by parsing natural language text with [KNEWS](), extracting instances of frames from the text, and the clustering the frames.
 
 Frame clustering
 ----------------
