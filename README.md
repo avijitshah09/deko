@@ -1,9 +1,11 @@
 Default Knowledge about Objects
 ===============================
+Obtaining and representing common-sense knowledge, useful in a robotics scenario for planning and making inference about the robots’ surroundings, is a challenging problem because such knowledge is typically found in unstructured repositories such as text corpora or small handmade resources. This work presents a methodology for automatically creating a default knowledge base about real-world objects for the robotics domain. The proposed method relies on clustering frame instances extracted from natural language text as a way of distilling default knowledge. We collect and parse a natural language corpus using the Web as a source, then perform an agglomerative clustering of frame instances according to an appropriately defined similarity measure, and finally extract prototypical frame instances from each cluster and publish them in LOD-complaint format to promote reuse and interoperability.
 
-DeKO is a repository of default knowledge about common object.
+In summary, DeKO is a repository of default knowledge about common object. DeKO is built by parsing natural language text with [KNEWS](), extracting instances of frames from the text, clustering the frames and extract knowledge.
 
-DeKO is built by parsing natural language text with [KNEWS](), extracting instances of frames from the text, and the clustering the frames.
+Publication: http://ceur-ws.org/Vol-1935/paper-01.pdf
+Data: https://project.inria.fr/aloof/data/
 
 Frame clustering
 ----------------
